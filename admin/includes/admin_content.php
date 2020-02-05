@@ -10,17 +10,39 @@
 
                         <?php 
 
-                            // $user = User::findUserById(8);
-
-                            // $user->username = 'don neto';
-                            // $user->password = '321';
-                            // $user->first_name = 'Ernesto ';
-                            // $user->last_name = 'Fonseca';
+                            // $user = User::findById(12);
+                            // $user->username = 'El Señor';
+                            // $user->password = '123';
+                            // $user->first_name = 'Miguel Rodríguez';
+                            // $user->last_name = 'Orejuela';
                             // $user->update();
+                            
+
+                            // $user->username = 'El putito';
+                            // $user->password = '432';
+                            // $user->first_name = 'Gilberto José';
+                            // $user->last_name = 'Rodríguez Orejuela';
+
+                            // $user->create();
+                            // var_dump($user);
+
+                            // $photos = Photo::findAll();
+
+                            // foreach ($photos as $photo){
+                            //     echo $photo->title;
+                            // }
+
+                            $photo = Photo::findById(3);
+
+                            // $photo->title = 'Photo from village';
+                            // $photo->size = 21;
+                            // var_dump($photo);
+                            $photo->delete();
+
+
 
 
                         ?>
-
                         <ol class="breadcrumb">
                             <li>
                                 <i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
