@@ -4,17 +4,19 @@ class Photo extends DbObject
 
 {
 	protected static $table = 'photos';
-	protected static $table_fields = array('title', 'description', 'filename', 'type', 'size');
+	protected static $table_fields = array('title', 'caption', 'description', 'filename', 'alternate_text', 'type', 'size');
 	public $id;
 	public $title;
+	public $caption;
 	public $description;
 	public $filename;
+	public $alternate_text;	
 	public $type;
-	public $size = 0;	
+	public $size = 0;
 
 	public $tmp_path;
 	public $upload_directory = 'images';
-	public $custom_errors = array();
+	public $errors = array();
 	public $upload_errors_array = array(
 
 		UPLOAD_ERR_OK => 'There is no error',
@@ -28,7 +30,75 @@ class Photo extends DbObject
 	);
 
 
+	public function setFile($file)
+	{
+		if(empty($file) || !$file || !is_array($file)){
+			$this->errors[] = 'No files uploaded.';
+			return false;
+		}elseif($file['error'] !=0){
+			$this->errors[] = $this->upload_errors_array[$file['error']];
+			return false;
+		}else {
+			$this->filename = basename($file['name']);
+			$this->tmp_path = $file['tmp_name'];
+			$this->type = $file['type'];
+			$this->size = $file['size'];
 
+		}
+	}
+
+	public function picturePath()
+	{
+		return $this->upload_directory.DS.$this->filename;
+	}
+
+	public function save()
+	{
+		if($this->id){
+			$this->update();
+		}else{
+
+			if(!empty($this->errors)){
+				return false;
+			}
+
+			if(empty($this->filename) || empty($this->tmp_path)){
+				$this->errors[] = 'The file is not available.';
+				return false;
+			}
+
+			$target_path = SITE_ROOT . DS . 'admin' . DS . $this->upload_directory . DS . $this->filename;
+
+			if(file_exists($target_path)){
+				$this->errors[] = 'The file "'.$this->filename.'" already exists';
+			}
+
+			if(move_uploaded_file($this->tmp_path, $target_path)){
+				if($this->create()){
+					unset($this->tmp_path);
+					return true;
+				}
+			}else{
+				$this->errors[] = 'Some error occurred';
+				return false;
+			}
+
+
+
+			// $this->create();
+		}
+	}
+
+	public function deletePhoto()
+	{
+		if($this->delete()){
+			$target_path = SITE_ROOT. DS . 'admin' . DS . $this->picturePath();
+
+			return unlink($target_path) ? true : false;
+		}else {
+			return false;
+		}
+	}
 
 
 

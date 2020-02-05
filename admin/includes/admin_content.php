@@ -5,12 +5,12 @@
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Admin page
-                            <small>Subheading</small>
                         </h1>
 
                         <?php 
 
                             // $user = User::findById(12);
+                            // echo $user->username;
                             // $user->username = 'El Señor';
                             // $user->password = '123';
                             // $user->first_name = 'Miguel Rodríguez';
@@ -32,12 +32,14 @@
                             //     echo $photo->title;
                             // }
 
-                            $photo = Photo::findById(3);
+                            // $photo = Photo::findById(5);
+                            // echo $photo->filename;
 
                             // $photo->title = 'Photo from village';
                             // $photo->size = 21;
                             // var_dump($photo);
-                            $photo->delete();
+                            // $photo->delete();
+                            // echo INCLUDES_PATH;
 
 
 
