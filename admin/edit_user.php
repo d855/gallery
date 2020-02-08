@@ -1,4 +1,5 @@
 <?php include("includes/header.php"); ?>
+<?php include('includes/photo_modal.php')?>
 <?php if(!$session->isSignedIn()){ redirect('login.php');} ?>
 <?php 
 
@@ -45,6 +46,8 @@ if(isset($_POST['update'])){
 
 ?>
 
+   
+
         <!-- Navigation -->
         <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -72,8 +75,8 @@ if(isset($_POST['update'])){
                            Edit user: <?php echo $user->first_name. ' '. $user->last_name; ?>
                         </h1>
                         
-                        <div class="col-md-6">
-                            <img class="img-responsive" src="<?php echo $user->imagePlaceholder(); ?>">
+                        <div class="col-md-6 user_image_box">
+                            <a href="#" data-toggle="modal" data-target="#photo-modal"><img class="img-responsive" src="<?php echo $user->imagePlaceholder(); ?>"></a>
                         </div>
 
 
@@ -105,7 +108,7 @@ if(isset($_POST['update'])){
                                 </div>
 
                                 <div class="form-group">
-                                    <a class="btn btn-danger pull-right" href="delete_user.php?id=<?php echo $user->id; ?>">Delete user</a>
+                                    <a id="user-id" class="btn btn-danger pull-right" href="delete_user.php?id=<?php echo $user->id; ?>">Delete user</a>
                                     <input type="submit" name="update" class="btn btn-primary" value="Update user">
                                 </div>
                             </div>

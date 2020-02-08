@@ -16,7 +16,7 @@ if(isset($_POST['create'])){
 
         $user->saveUserImage();
 
-        // $user->save();
+        $user->save();
     }
 }
 

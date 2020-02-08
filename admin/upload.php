@@ -56,6 +56,7 @@ if(isset($_POST['submit'])){
                             <?php echo $message; ?>
                             <form method="post" action="upload.php" enctype="multipart/form-data">
                                 <div class="form-group">
+                                    <label>Photo title</label>
                                     <input type="text" name="title" class="form-control">
                                 </div> 
 

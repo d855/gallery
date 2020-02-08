@@ -5,12 +5,23 @@ class Session
 	private $logged_in = false;
 	public $user_id;
 	public $message;
+	public $count;
 
 	public function __construct()
 	{
 		session_start();
 		$this->checkTheLogin();
 		$this->checkMessage();
+		$this->countVisitor();
+	}
+
+	public function countVisitor()
+	{
+		if(isset($_SESSION['count'])){
+			return $this->count = $_SESSION['count']++;
+		}else {
+			$_SESSION['count'] = 1;
+		}
 	}
 
 	public function message($msg ='')

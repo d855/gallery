@@ -14,6 +14,7 @@ class User extends DbObject
 	public $image_placeholder = 'https://placehold.it/400x400&text=image';
 
 
+
 	public static function verifyUser($username, $password)
 	{
 		global $database;
@@ -44,7 +45,7 @@ class User extends DbObject
 			$this->errors[] = $this->upload_errors_array[$file['error']];
 			return false;
 		}else {
-			$this->filename = basename($file['name']);
+			$this->user_image = basename($file['name']);
 			$this->tmp_path = $file['tmp_name'];
 			$this->type = $file['type'];
 			$this->size = $file['size'];
@@ -78,6 +79,23 @@ class User extends DbObject
 			return false;
 		}
 		
+	}
+
+
+	public function ajaxSaveUserImage($user_image, $user_id)
+	{
+		global $database;
+
+		$user_image = $database->escapeString($user_image);
+		$user_id = $database->escapeString($user_id);
+
+		$this->user_image = $user_image;
+		$this->id = $user_id;
+
+		$sql = 'update ' .self::$table. ' set user_image = "'.$this->user_image.'" where id = "'.$this->id.'"';
+		$update_img = $database->query($sql);
+
+		echo $this->imagePlaceholder();
 	}
 
 
