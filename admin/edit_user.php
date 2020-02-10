@@ -19,12 +19,17 @@ if(isset($_POST['update'])){
 
         if(empty($_FILES['user_image'])){
             $user->save();
+            redirect('users.php');
+            $session->message('The user has been updated successfully');
         }else {
             $user->setFile($_FILES['user_image']);
             $user->saveUserImage();
             $user->save();
+            $session->message('The user has been updated successfully');
 
-            redirect('edit_user.php?id='.$user->id);
+
+            redirect('users.php');
+            // redirect('edit_user.php?id='.$user->id);
 
 
         }

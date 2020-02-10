@@ -98,6 +98,15 @@ class User extends DbObject
 		echo $this->imagePlaceholder();
 	}
 
+	public function deletePhoto()
+	{
+		if($this->delete()){
+			$target_path = SITEROOT.DS. 'admin' . DS . $this->upload_directory . DS . $this->user_image;
+			return unlink($target_path) ? true : false;
+		}else {
+			return false;
+		}
+	}
 
 
 
