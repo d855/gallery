@@ -5,7 +5,7 @@
 <?php
 
 $message = '';
-if(isset($_POST['submit'])){
+if(isset($_FILES['file'])){
     $photo = new Photo();
     $photo->title = $_POST['title'];
     $photo->setFile($_FILES['file_upload']);
@@ -52,21 +52,29 @@ if(isset($_POST['submit'])){
                             Upload
                         </h1>
                         
-                        <div class="col-md-6">
-                            <?php echo $message; ?>
-                            <form method="post" action="upload.php" enctype="multipart/form-data">
-                                <div class="form-group">
-                                    <label>Photo title</label>
-                                    <input type="text" name="title" class="form-control">
-                                </div> 
+                        <div class="row">
+                            <div class="col-md-6">
+                                <?php echo $message; ?>
+                                <form method="post" action="upload.php" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>Photo title</label>
+                                        <input type="text" name="title" class="form-control">
+                                    </div> 
 
-                                <div class="form-group">
-                                    <input type="file" name="file_upload">
-                                </div>
+                                    <div class="form-group">
+                                        <input type="file" name="file_upload">
+                                    </div>
 
-                                <input type="submit" name="submit">
-                            </form>
+                                    <input type="submit" name="submit">
+                                </form>
+                            </div>
                         </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form action="upload" class="dropzone"></form>
+                            </div>
+                        </div>    
 
                     </div>
                 </div>
