@@ -8,7 +8,7 @@ $message = '';
 if(isset($_FILES['file'])){
     $photo = new Photo();
     $photo->title = $_POST['title'];
-    $photo->setFile($_FILES['file_upload']);
+    $photo->setFile($_FILES['file']);
 
 
     if($photo->save()){
@@ -62,7 +62,7 @@ if(isset($_FILES['file'])){
                                     </div> 
 
                                     <div class="form-group">
-                                        <input type="file" name="file_upload">
+                                        <input type="file" name="file">
                                     </div>
 
                                     <input type="submit" name="submit">
@@ -72,7 +72,7 @@ if(isset($_FILES['file'])){
                         
                         <div class="row">
                             <div class="col-lg-12">
-                                <form action="upload" class="dropzone"></form>
+                                <form action="upload.php" class="dropzone"></form>
                             </div>
                         </div>    
 

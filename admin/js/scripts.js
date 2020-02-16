@@ -55,7 +55,20 @@ $(document).ready(function() {
 
 
 
+/*********** Edit photo sidebar ***********/
 
+
+$('.info-box-header').click(function(){
+	$('.inside').slideToggle('fast');
+	$('#toggle').toggleClass('glyphicon-menu-down glyphicon , glyphicon-menu-up glyphicon');
+
+});
+
+/*********** Delete alert ***********/
+
+$('.delete_link').click(function(){
+	return confirm('Are you suer you want to delete?');
+});
 
 
 

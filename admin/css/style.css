@@ -88,3 +88,10 @@ margin:10px;
 position: fixed !important;
 
 }
+
+
+/******************************* Lggin page ********************************/
+
+#login-id label{
+  color: #fff;
+}
